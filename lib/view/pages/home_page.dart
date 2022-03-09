@@ -2,6 +2,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:task/models/users_model.dart';
 import 'package:task/services/users_service.dart';
+import 'package:task/widgets/list_of_user_in_box.dart';
 import 'package:task/widgets/list_of_users_widgets.dart';
 
 class UsersListPage extends StatefulWidget {
@@ -26,7 +27,7 @@ class _UsersListPageState extends State<UsersListPage> {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: UserService.getData,
-      child: FutureBuilder(
+      child: isConnected!? FutureBuilder(
         future: UserService.getData(),
         builder: (context, AsyncSnapshot<List<UserModel>> snapshot) {
           if (!snapshot.hasData) {
@@ -41,21 +42,19 @@ class _UsersListPageState extends State<UsersListPage> {
             return ListOfUsers(snap: snapshot);
           }
         },
-      ),
+      ):Center(child: Text("Error"),),
     );
   }
 
-  checkConnection() async {
-    _connectivity.onConnectivityChanged.listen((ConnectivityResult event) {
-      if (event == ConnectivityResult.mobile ||
-          event == ConnectivityResult.wifi) {
-        isConnected == true;
+  checkConnection() {
+    _connectivity.onConnectivityChanged.listen((event) {
+      if (event == ConnectivityResult.wifi ||
+          event == ConnectivityResult.mobile) {
+        isConnected = true;
         setState(() {});
       } else {
-        isConnected == false;
-        setState(() {
-          
-        });
+        isConnected = false;
+        setState(() {});
       }
     });
   }

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:task/models/users_model.dart';
+import 'package:task/services/users_service.dart';
 
-class ListOfUsers extends StatelessWidget {
-  final AsyncSnapshot<List<UserModel>>? snap;
-  const ListOfUsers({Key? key,required this.snap}) : super(key: key);
+class ListOfUsersInBox extends StatelessWidget {
+  const ListOfUsersInBox({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -20,14 +19,14 @@ class ListOfUsers extends StatelessWidget {
                     //     radius: 25.0,
                     //     backgroundImage: NetworkImage(
                     //         "https://source.unsplash.com/random")),
-                    title: Text(snap!.data![__].username!.toString()),
-                    subtitle: Text(snap!.data![__].email.toString()),
-                    trailing: Text(snap!.data![__].id.toString()),
+                    title: Text(UserService.usersBox!.getAt(__)!.username!.toString()),
+                    subtitle: Text(UserService.usersBox!.getAt(__)!.email!.toString()),
+                    trailing: Text(UserService.usersBox!.getAt(__)!.id!.toString()),
                   ),
                 ),
               );
             },
-            itemCount: snap!.data!.length,
+            itemCount: UserService.usersBox!.length,
           ),
         )
       ],
