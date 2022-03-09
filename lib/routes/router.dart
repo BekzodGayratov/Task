@@ -11,5 +11,6 @@ class MyRouter {
       case '/info':
         return MaterialPageRoute(builder: (context) => InfoPage(data: args as List,));
     }
+    return null;
   }
 }

@@ -1,14 +1,12 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:task/main.dart';
-import 'package:task/models/users_model.dart';
 import 'package:task/services/users_service.dart';
 
 class ListOfUsersInBox extends StatelessWidget {
   const ListOfUsersInBox({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return UserService.usersBox != null
+    return UserService.usersBox!.isNotEmpty
         ? FadeInUp(
             child: Column(
               children: [
@@ -54,8 +52,8 @@ class ListOfUsersInBox extends StatelessWidget {
               ],
             ),
           )
-        : Center(
-            child: Text("Please check connection"),
+        : const Center(
+            child: Text("Please check your connection"),
           );
   }
 }

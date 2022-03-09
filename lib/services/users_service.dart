@@ -18,7 +18,6 @@ class UserService {
     try {
       putData(allData);
     } catch (e) {
-      usersBox!.add("No data");
       Exception(e);
     }
 
@@ -27,13 +26,13 @@ class UserService {
 
   static openBox() async {
     //todo open box to save data in local data base
-    usersBox = await Hive.openBox("users");
     Directory appDocDir = await getApplicationDocumentsDirectory();
     Hive.init(appDocDir.path);
-    usersBox!.clear();
+    usersBox = await Hive.openBox("users");
   }
 
-  static putData(List<UserModel> data) {
+  static putData(List<UserModel> data) async {
+    await usersBox!.clear();
     //todo not add data to box again
     for (var item in data) {
       usersBox!.add(item);
@@ -41,7 +40,7 @@ class UserService {
   }
 
   static registerAdapter() {
-    //todo register
+    //todo register Adapters
     Hive.registerAdapter(UserModelAdapter());
     Hive.registerAdapter(AddressAdapter());
     Hive.registerAdapter(GeoAdapter());
