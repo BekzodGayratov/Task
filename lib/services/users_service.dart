@@ -6,29 +6,31 @@ import 'package:task/core/constants/my_api_constants.dart';
 import 'package:task/models/users_model.dart';
 
 //todo Get data from API
-//todo call some functions depend on backend side
 class UserService {
-  Box<UserModel>? usersBox;
+  static Box<UserModel>? usersBox;
 
   static Future<List<UserModel>> getData() async {
     await openBox();
     Response res = await Dio().get(MyApiConstants.myApi);
-    List<UserModel>? allData =
+    List<UserModel> allData =
         (res.data as List).map((e) => UserModel.fromJson(e)).toList();
-    await putData(allData);
+    if (res.statusCode == 200) {
+      putData(allData);
+    }
     return allData;
   }
 
   static openBox() async {
     //todo open box to save data in local data base
-    Hive.openBox("users");
+    usersBox = await Hive.openBox("users");
     Directory appDocDir = await getApplicationDocumentsDirectory();
     Hive.init(appDocDir.path);
   }
 
-  static putData(List<UserModel> data) async {
+  static putData(List<UserModel> data) {
+    usersBox!.clear(); //todo not add data to box again
     for (var item in data) {
-      print(item.id);
+      usersBox!.add(item);
     }
   }
 
