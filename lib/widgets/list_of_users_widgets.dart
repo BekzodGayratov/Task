@@ -20,15 +20,23 @@ class ListOfUsers extends StatelessWidget {
                   padding: EdgeInsets.symmetric(
                       vertical: MediaQuery.of(context).size.height * 0.01),
                   child: Card(
-                    child: ListTile(
-                      leading: CircleAvatar(
-                        radius: 25.0,
-                        backgroundImage: NetworkImage(
-                            "https://source.unsplash.com/random/$__")
+                    child: InkWell(
+                      child: ListTile(
+                        leading: CircleAvatar(
+                            radius: 25.0,
+                            backgroundImage: NetworkImage(
+                                "https://source.unsplash.com/random/$__")),
+                        title: Text(snap!.data![__].username!.toString()),
+                        subtitle: Text(snap!.data![__].email.toString()),
+                        trailing: Text(snap!.data![__].id.toString()),
                       ),
-                      title: Text(snap!.data![__].username!.toString()),
-                      subtitle: Text(snap!.data![__].email.toString()),
-                      trailing: Text(snap!.data![__].id.toString()),
+                      onTap: () {
+                        Navigator.pushNamed(context, '/info', arguments: [
+                          NetworkImage(
+                              "https://source.unsplash.com/random/$__"),
+                          snap!.data![__],
+                        ]);
+                      },
                     ),
                   ),
                 );
