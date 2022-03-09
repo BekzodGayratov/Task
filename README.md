@@ -1,16 +1,5 @@
-# task
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+**This is task app that support offline and online mode using Hive. And connectivity checking, searching finction, switch theme mode are available.**![Screenshot_1646865386](https://user-images.githubusercontent.com/95920827/157550939-d0761ff1-62cd-40fe-8498-a4137a918725.png)
+![Screenshot_1646865404](https://user-images.githubusercontent.com/95920827/157550946-50d542d6-63e4-4a6e-850f-3bd35bb03b8a.png)
+![Screenshot_1646865442](https://user-images.githubusercontent.com/95920827/157550950-e51cba2f-66e3-4f03-876b-692056199eb4.png)
+![Screenshot_1646865471](https://user-images.githubusercontent.com/95920827/157550952-9ab5c8fc-6125-4163-b98d-3f2cb38e2347.png)
+![Screenshot_1646865483](https://user-images.githubusercontent.com/95920827/157550956-a77779e5-3f54-47fd-b3a2-07118f270e5b.png)
