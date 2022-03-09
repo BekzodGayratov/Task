@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:task/routes/router.dart';
+import 'package:task/services/users_service.dart';
 
 void main() async {
   await Hive.initFlutter();
+  UserService.registerAdapter();
   runApp(MyApp());
 }
 
