@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task/models/users_model.dart';
+import 'package:task/services/users_service.dart';
 
 class ListOfUsers extends StatelessWidget {
   final AsyncSnapshot<List<UserModel>>? snap;
@@ -8,32 +9,35 @@ class ListOfUsers extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: ListView.builder(
-            itemBuilder: (_, __) {
-              return Padding(
-                padding: EdgeInsets.symmetric(
-                    vertical: MediaQuery.of(context).size.height * 0.01),
-                child: Card(
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      radius: 25.0,
-                      backgroundImage: NetworkImage(
-                          "https://source.unsplash.com/random/$__")
+    return RefreshIndicator(
+      onRefresh: UserService.getData,
+      child: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemBuilder: (_, __) {
+                return Padding(
+                  padding: EdgeInsets.symmetric(
+                      vertical: MediaQuery.of(context).size.height * 0.01),
+                  child: Card(
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        radius: 25.0,
+                        backgroundImage: NetworkImage(
+                            "https://source.unsplash.com/random/$__")
+                      ),
+                      title: Text(snap!.data![__].username!.toString()),
+                      subtitle: Text(snap!.data![__].email.toString()),
+                      trailing: Text(snap!.data![__].id.toString()),
                     ),
-                    title: Text(snap!.data![__].username!.toString()),
-                    subtitle: Text(snap!.data![__].email.toString()),
-                    trailing: Text(snap!.data![__].id.toString()),
                   ),
-                ),
-              );
-            },
-            itemCount: snap!.data!.length,
-          ),
-        )
-      ],
+                );
+              },
+              itemCount: snap!.data!.length,
+            ),
+          )
+        ],
+      ),
     );
   }
 }

@@ -30,27 +30,24 @@ class _UsersListPageState extends State<UsersListPage> {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: UserService.getData,
-      child: isConnected
-          ? FutureBuilder(
-              future: UserService.getData(),
-              builder: (context, AsyncSnapshot<List<UserModel>> snapshot) {
-                if (!snapshot.hasData) {
-                  return const Center(
-                    child: CircularProgressIndicator.adaptive(),
-                  );
-                } else if (snapshot.hasError) {
-                  return const Center(
-                    child: Text("Error"),
-                  );
-                } else {
-                  return FadeInUp(child: ListOfUsers(snap: snapshot,isConnect: isConnected,));
-                }
-              },
-            )
-          : const ListOfUsersInBox(),
-    );
+    return isConnected
+        ? FutureBuilder(
+            future: UserService.getData(),
+            builder: (context, AsyncSnapshot<List<UserModel>> snapshot) {
+              if (!snapshot.hasData) {
+                return const Center(
+                  child: CircularProgressIndicator.adaptive(),
+                );
+              } else if (snapshot.hasError) {
+                return const Center(
+                  child: Text("Error"),
+                );
+              } else {
+                return FadeInUp(child: ListOfUsers(snap: snapshot,isConnect: isConnected,));
+              }
+            },
+          )
+        : const ListOfUsersInBox();
   }
 
   checkConnection() {
