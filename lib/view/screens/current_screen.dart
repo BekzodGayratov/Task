@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:task/providers/bottom_navigation_bar_provider.dart';
 import 'package:task/view/pages/home_page.dart';
 import 'package:task/view/pages/search_page.dart';
+import 'package:task/view/pages/settings_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -10,7 +11,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //todo save Pages
-    List<Widget> _pages = [const UsersListPage(),SearchPage()];
+    List<Widget> _pages = [const UsersListPage(),const SearchPage(),SettingsPage()];
     return ChangeNotifierProvider(
       create: (context) => BottomNavigationBarProvider(),
       builder: (context, child) {

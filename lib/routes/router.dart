@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task/view/pages/info_page.dart';
 import 'package:task/view/pages/search_page.dart';
+import 'package:task/view/pages/settings_page.dart';
 import 'package:task/view/screens/current_screen.dart';
 
 class MyRouter {
@@ -16,6 +17,8 @@ class MyRouter {
                 ));
       case '/search':
         return MaterialPageRoute(builder: (context) => SearchPage());
+      case '/settings':
+        return MaterialPageRoute(builder: (context) => SettingsPage());
     }
     return null;
   }

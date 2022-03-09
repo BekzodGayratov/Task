@@ -18,6 +18,9 @@ class SearchPage extends StatelessWidget {
               child: FadeInRight(
             child: Column(
               children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
                 Expanded(
                   flex: 2,
                   child: TextFormField(
