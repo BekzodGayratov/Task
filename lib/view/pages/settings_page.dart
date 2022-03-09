@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:task/core/constants/current_them_mode.dart';
+
 import 'package:task/providers/change_theme_provider.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -12,6 +14,7 @@ class SettingsPage extends StatelessWidget {
         create: (context) => ChangeThemeProvider(),
         builder: (context, child) {
           return Scaffold(
+            backgroundColor: CurrentThemMode.scaffoldColor,
             body: SafeArea(
               child: Column(
                 children: [
