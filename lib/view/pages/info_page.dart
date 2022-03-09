@@ -1,14 +1,17 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:task/providers/search_page_provider.dart';
 import 'package:task/widgets/info_page_line_info_widget.dart';
 
 class InfoPage extends StatelessWidget {
-  List data;
-  InfoPage({Key? key, required this.data}) : super(key: key);
+  final List data;
+  const InfoPage({Key? key, required this.data}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return ChangeNotifierProvider(create: (context)=>SearchPageProvider(),builder: (context,child){
+      return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -64,6 +67,7 @@ class InfoPage extends StatelessWidget {
         ),
       ),
     );
+    },);
   }
 }
 
