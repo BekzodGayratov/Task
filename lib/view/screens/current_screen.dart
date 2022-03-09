@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //todo save Pages
-    List<Widget> _pages = [UsersListPage(), SearchPage()];
+    List<Widget> _pages = [const UsersListPage(),SearchPage()];
     return ChangeNotifierProvider(
       create: (context) => BottomNavigationBarProvider(),
       builder: (context, child) {
@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
           ), //todo change screens,
           bottomNavigationBar: BottomNavigationBar(
             fixedColor: Colors.black,
-            currentIndex: 0,
+            currentIndex: context.watch<BottomNavigationBarProvider>().currentIndex,
             items: const [
               BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
               BottomNavigationBarItem(

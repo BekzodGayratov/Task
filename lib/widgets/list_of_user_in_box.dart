@@ -7,7 +7,7 @@ class ListOfUsersInBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return UserService.usersBox!.isNotEmpty
-        ? FadeInUp(
+        ? FadeInLeft(
             child: Column(
               children: [
                 Expanded(

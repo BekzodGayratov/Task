@@ -8,12 +8,14 @@ import 'package:task/models/users_model.dart';
 //todo Get data from API
 class UserService {
   static Box? usersBox;
+  static late List<UserModel> onlineData;
 
   static Future<List<UserModel>> getData() async {
     await openBox();
     Response res = await Dio().get(MyApiConstants.myApi);
     List<UserModel> allData =
         (res.data as List).map((e) => UserModel.fromJson(e)).toList();
+    onlineData = allData;
 
     try {
       putData(allData);
