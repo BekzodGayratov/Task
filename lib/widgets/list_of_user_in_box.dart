@@ -18,8 +18,8 @@ class ListOfUsersInBox extends StatelessWidget {
                   child: Card(
                     child: ListTile(
                       leading: const CircleAvatar(
-                          radius: 25.0,
-                          backgroundColor: Colors.blue,),
+                        backgroundImage: AssetImage("assets/imagenot.gif"),
+                      ),
                       title: Text(UserService.usersBox!.getAt(__).username.toString()),
                       subtitle:Text(UserService.usersBox!.getAt(__).email.toString()),
                       trailing:

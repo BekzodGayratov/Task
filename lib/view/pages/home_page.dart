@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
