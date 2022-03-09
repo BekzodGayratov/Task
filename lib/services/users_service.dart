@@ -7,16 +7,21 @@ import 'package:task/models/users_model.dart';
 
 //todo Get data from API
 class UserService {
-  static Box<UserModel>? usersBox;
+  static Box? usersBox;
 
   static Future<List<UserModel>> getData() async {
     await openBox();
     Response res = await Dio().get(MyApiConstants.myApi);
     List<UserModel> allData =
         (res.data as List).map((e) => UserModel.fromJson(e)).toList();
-    if (res.statusCode == 200) {
+
+    try {
       putData(allData);
+    } catch (e) {
+      usersBox!.add("No data");
+      Exception(e);
     }
+
     return allData;
   }
 
@@ -25,10 +30,11 @@ class UserService {
     usersBox = await Hive.openBox("users");
     Directory appDocDir = await getApplicationDocumentsDirectory();
     Hive.init(appDocDir.path);
+    usersBox!.clear();
   }
 
   static putData(List<UserModel> data) {
-    usersBox!.clear(); //todo not add data to box again
+    //todo not add data to box again
     for (var item in data) {
       usersBox!.add(item);
     }

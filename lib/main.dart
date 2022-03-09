@@ -4,6 +4,7 @@ import 'package:task/routes/router.dart';
 import 'package:task/services/users_service.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   UserService.registerAdapter();
   runApp(MyApp());

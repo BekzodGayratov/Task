@@ -8,9 +8,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     
     //todo save Pages
-    List<Widget> _pages = [UsersListPage(),];
     return Scaffold(
-      body: SafeArea(child: _pages[0]), //todo change screens,
+      body: SafeArea(child: UsersListPage(),), //todo change screens,
       bottomNavigationBar: BottomNavigationBar(
         fixedColor: Colors.black,
         currentIndex: 0,
